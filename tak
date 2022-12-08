@@ -1,0 +1,78 @@
+#include <iostream>
+
+using namespace std;
+class CU
+{
+
+    int licznik, mianownik, c_calkowita;
+public:
+    CU()
+    {
+        licznik = c_calkowita = 0;
+        mianownik = 1;
+
+    }
+    CU(int l, int m)
+    {
+        ustawLicznik(1);
+        ustawMianownik(m);
+    }
+    CU (int cc, int l, int m)
+    {
+        c_calkowita = cc;
+        ustawLicznik(l);
+        ustawMianownik(m);
+    }
+    void ustawLicznik(int l)
+    {
+
+    licznik = l;
+    }
+    void ustawMianownik(int m)
+    {
+
+    if (m == 0) mianownik = 1;
+    else mianownik = m;
+    }
+    int pobierzLicznik(){
+        return licznik;
+    }
+    int pobierzMianownik()
+    {
+
+    return mianownik;
+    }
+    void wypisz()
+    {
+
+    cout<<pobierzLicznik()<<"/"<<pobierzMianownik()<<endl;
+
+    }
+    CU operator*(CU arg)
+    {
+        CU ret;
+        ret.licznik = licznik * arg.licznik;
+        ret.mianownik = mianownik * arg.mianownik;
+        return ret;
+
+    }
+    CU operator/ (CU arg)
+    {
+
+    CU ret;
+    ret.licznik = licznik * arg.mianownik;
+    ret.mianownik = mianownik * arg.licznik;
+    return ret;
+    }
+};
+
+
+
+
+int main()
+{
+    CU a, b(1,2), c(2,3,7); /// d("2 3/4")
+    a.wypisz();
+    a = b * c;
+    return 0;
+}
